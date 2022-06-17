@@ -47,3 +47,9 @@ df = pd.DataFrame([{'COA': 0.92,
          "LOR": 3.0,
          "University Rating": 2,
            "TOEFL": 103}])
+
+#Pandorable method
+(df.where(df['SOP'] > 3.0)   
+    .dropna()
+    .set_index(['Serial Number', 'University Rating'])
+    .rename(columns = {'LOR' : 'Letter of Recommendation'}))
