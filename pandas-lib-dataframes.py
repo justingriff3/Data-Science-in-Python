@@ -1,3 +1,5 @@
+import pandas as pd
+
 #DATA FRAMES 
 students = ["Justin", "Siroun", "Addison"]
 pd.Series(students)
