@@ -108,7 +108,8 @@ df = pd.DataFrame([{'COA': 0.92,
            "TOEFL": 103}])
 
 new_df = df.rename(columns = {'LOR' : 'Letter of Recommendation', 
-                             "SOP": "Statement of Purpose"}) #Function to rename a column
+                             "SOP": "Statement of Purpose",
+                             "COA" : 'Chances of Admit'}) #Function to rename a column
 new_df.columns #attribute to view columns
 
 # pass strip() function into mapper parameter strip white spaces. Very useful for accurate data cleaning
@@ -120,3 +121,32 @@ cols = list(df.columns)
 cols = [x.upper().strip() for x in cols]
 df.columns = cols
 df
+
+admit_mask = df["coa"] > 0.7
+admit_mask #Returns a series object of true and false values due broadcasting 
+#a comparison operator
+
+df.where(admit_mask).head() #Returns original indexed values and only data 
+#with the condition are retained
+
+# Two methods that removes the conditionalfalse values
+#1st
+df.where(admit_mask).dropna().head()
+#2nd
+df[df['coa'] > 0.7].head()
+
+#Column Projection of a dataframe
+df[["gre score", 'toefl']].head()
+
+df[df["gre score"] > 320].head()
+
+(df['coa'] > 0.7) & (df['coa'] < 0.9)
+#AND
+df['coa'].gt(0.7) & df['coa'].lt(0.9) #gt() = greater than, lt() less than
+#Do the same
+
+df["serial number"] = df.index #Copy indexed data into serial number
+
+df = df.set_index('coa') #sets the index to another column
+
+df = df.reset_index() #resets index to original 1-n
