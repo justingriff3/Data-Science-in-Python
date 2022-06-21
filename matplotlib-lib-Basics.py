@@ -33,6 +33,20 @@ for item in xvals:
     
 plt.bar(new_xvals, quadratic_data, width=0.3,color='red')
 
-#from random import randint
-#linear_err = [randint(0,150) for x in range(len(linear_data))]
-#plt.bar(xvals, linear_err, width = 0.3)
+from random import randint  #python library for generating random numbers
+linear_err = [randint(0,15) for x in range(len(linear_data))] #theoretical list of error values generating from random int
+plt.bar(xvals, linear_data, width=0.3, color =  yerr = linear_err) #
+
+#Stacked bar charts: Cummalative values while keeping values independent
+plt.figure()
+xvals = range(len(linear_data)) 
+plt.bar(xvals, linear_data, width = 0.3, color = 'b')
+plt.bar(xvals, quadratic_data, width = 0.3, bottom = linear_data, color ='r')
+
+#Horizontal bar graph
+plt.figure()
+xvals = range(len(linear_data))
+plt.barh(xvals, linear_data, height = 0.3, color = 'blue')
+plt.barh(xvals, quadratic_data, height = 0.3, left = linear_data, color = 'r')
+
+
