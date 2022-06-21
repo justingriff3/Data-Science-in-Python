@@ -23,6 +23,7 @@ plt.tick_params(top = 'off', bottom = 'off', left = 'off', right = 'off', labell
 for spine in plt.gca().spines.values():  #Remove the frame of the chart
     spine.set_visible(False)
 
+#direct label for each bar with Y axis values
 for bar in bars:
     plt.gca().text(bar.get_x() + bar.get_width()/2, bar.get_height() - 5, str(int(bar.get_height())) + '%',
                   ha = 'center', color = 'w', fontsize = 11)
